@@ -33,6 +33,14 @@ flag: ['OTH','RSTOS0','SF','SH','RSTO','S2','S1','REJ','S3','RSTR','S0']
 
 protocol_type: ['tcp','udp','icmp']
 
+Dos: ['apache2','back','land','neptune','mailbomb','pod','processtable','smurf','teardrop','udpstorm','worm']
+
+R2L: ['ftp_write','guess_passwd','httptunnel','imap','multihop','named','phf','sendmail','snmpgetattack','snmpguess','spy','warezclient','warezmaster','xlock','xsnoop']
+
+Probe: ['ipsweep','mscan','nmap','portsweep','saint','satan']
+
+U2R: ['buffer_overflow','loadmodule','perl','ps','rootkit','sqlattack','xterm']
+
 
 
 

@@ -91,7 +91,17 @@ class DataInformation:
             return self.df.label.unique()
             
     def get_info(self):
+
         """Return the all info of the dataframe
 
         """
         return self.df.info()
+    
+    def drop_column(self, column_name: str):
+        """Returns the dataframe after removing the column
+
+        Args:
+            column_name: Name of the column
+
+        """
+        return self.df.drop([column_name], axis=1)
