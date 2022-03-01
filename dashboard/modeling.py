@@ -1,9 +1,31 @@
 import pickle
 import pandas as pd
 from sklearn.metrics import classification_report
-from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+from sklearn.preprocessing import StandardScaler
+from sklearn import preprocessing
+import seaborn as sns
+import numpy as np
 
+def standardization(dataframe, columns: list):
+    std_scaler = StandardScaler()
+    for column in columns:
+        arr = np.array(dataframe[column])
+        std_scaler.fit(arr.reshape(len(arr),1))
+        # pickle.dump(std_scaler, open(scaler_path, "wb"))
+        dataframe[column] = std_scaler.transform(arr.reshape(len(arr),1))
+    return dataframe
+
+def encode_dataframe(dataframe, categorical_columns):
+    """encode categorical column into numeric one"""
+    le = preprocessing.LabelEncoder()
+
+    for column in categorical_columns:
+        arr = np.array(dataframe[column])
+        le.fit(arr.reshape(len(arr),1))
+        dataframe[column] = le.transform(arr.reshape(len(arr),1))
+    return dataframe
 
 def split_data(data, data_label, test_size=0.25, random_state=0):
     """Split the data into train and test, validation set.
@@ -37,7 +59,7 @@ class ClassificationModel:
         )
         self.model = classification_model
 
-    def train_model(self, models):
+    def train_model(self):
         """Train the model:
             model (anyClassificationModel): Pass any classification Algorithms 
             ---------
@@ -45,7 +67,7 @@ class ClassificationModel:
             model after fitting into the data
         """
 
-        return models.fit(self.x_train, self.y_train)
+        return self.model.fit(self.x_train, self.y_train)
 
         
 
@@ -56,6 +78,14 @@ class ClassificationModel:
         df_report = pd.DataFrame(report).transpose()
 
         return df_report
+
+    def generate_confusion_matrix(self):
+
+        y_prediction = self.model.predict(self.x_test)
+        cf_matrix = confusion_matrix(self.y_test, y_prediction)
+        sns.heatmap(cf_matrix/np.sum(cf_matrix), annot=True, 
+            fmt='.2%', cmap='Blues')
+        
 
     def save_the_model(self, model_path):
         """Saves the model.

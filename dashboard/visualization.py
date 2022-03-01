@@ -21,7 +21,7 @@ class Visualization:
         fig.tight_layout()
 
     @staticmethod
-    def get_elbow_plot(data):
+    def plot_elbow_graph(data):
         
         """Visualization for the optimal number of clusters on a elbow plot.
 

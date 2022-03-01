@@ -1,4 +1,4 @@
-from dashboard.modeling import ClassificationModel
+from dashboard.show_result import show_result
 from dashboard.clustering import Clustering
 from dashboard.data_info import DataInformation
 from dashboard.visualization import Visualization
