@@ -41,8 +41,11 @@ Probe: ['ipsweep','mscan','nmap','portsweep','saint','satan']
 
 U2R: ['buffer_overflow','loadmodule','perl','ps','rootkit','sqlattack','xterm']
 
+model_path: './trained_model/'
 
+encoder_path: './encoder/'
 
+scaler_path: './scaler/'
 
 
 

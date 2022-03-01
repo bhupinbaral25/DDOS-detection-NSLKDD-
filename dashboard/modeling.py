@@ -8,22 +8,23 @@ from sklearn import preprocessing
 import seaborn as sns
 import numpy as np
 
-def standardization(dataframe, columns: list):
+def standardization(dataframe, columns: list, scaler_path):
     std_scaler = StandardScaler()
     for column in columns:
         arr = np.array(dataframe[column])
         std_scaler.fit(arr.reshape(len(arr),1))
-        # pickle.dump(std_scaler, open(scaler_path, "wb"))
+        pickle.dump(std_scaler, open(f"{scaler_path}sts_scaler_{column}.pickle", "wb"))
         dataframe[column] = std_scaler.transform(arr.reshape(len(arr),1))
     return dataframe
 
-def encode_dataframe(dataframe, categorical_columns):
+def encode_dataframe(dataframe, categorical_columns, encoder_path):
     """encode categorical column into numeric one"""
     le = preprocessing.LabelEncoder()
 
     for column in categorical_columns:
         arr = np.array(dataframe[column])
         le.fit(arr.reshape(len(arr),1))
+        pickle.dump(le, open(f"{encoder_path}encoder_{column}.pickle", "wb"))
         dataframe[column] = le.transform(arr.reshape(len(arr),1))
     return dataframe
 
