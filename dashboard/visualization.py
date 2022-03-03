@@ -4,7 +4,6 @@ from sklearn.cluster import KMeans
 
 plt.style.use("seaborn")
 
-
 class Visualization:
     @staticmethod
     def plot_data_distribution(data):
