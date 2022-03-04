@@ -32,12 +32,11 @@ def show_result(data, data_label, clf, model_path):
     clf_obj = ClassificationModel(data, data_label, clf)
     clf_obj.train_model()
     clf_obj.generate_confusion_matrix()
-    clf_obj.save_the_model(f"{model_path}fine_model_{str(clf)[0:-3]}.pickle")
+    clf_obj.save_the_model(f"{model_path}fine_model_{str(clf).split('(')[0]}.pickle")
     return clf_obj.get_report()
       
-
 def get_prediction(model_name: str):
-    '''Function to predict on the basis of user input
+    '''Function to predict on the basis of user input]
     ---------
     parameter:
         model_name:  string pickel file from trained data
