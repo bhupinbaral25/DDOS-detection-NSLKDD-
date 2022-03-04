@@ -50,7 +50,7 @@ col2, col3 = st.columns((2,1))
 col1.header('Input Options')
 
 ## Sidebar - Currency price unit
-choosed_algorithm = col1.selectbox('Choose The Algorithm', ('LogisticRegression', 'SVC(gamma=', 'ETH'))
+choosed_algorithm = col1.selectbox('Choose The Algorithm', ('LogisticRegression', 'SVC'))
 pie_image = Image.open('./static-stremlit/pie_chart_data.png')
 col1.text('Data Label and Its Distribution')
 col1.image(pie_image)
